@@ -537,7 +537,7 @@
 /* ============ إعدادات أساسية ============ */
 const API_KEY = "AQ.Ab8RN6Iawfn-1QPgTIFZkO3065SvMAqqQkVZdGjsXUYshdQ8Cw";
 const MODEL = "gemini-3.6-flash";
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
 
 /* ============ اللغات ============ */
 const LANGUAGES = [
@@ -754,7 +754,7 @@ async function callGemini(parts, onRetry){
     try{
       res = await fetch(API_URL,{
         method:"POST",
-        headers:{"Content-Type":"application/json"},
+        headers:{"Content-Type":"application/json", "x-goog-api-key": API_KEY},
         body:JSON.stringify({
           contents:[{role:"user", parts}],
           generationConfig:{ responseMimeType:"application/json" }
